@@ -1,36 +1,23 @@
-use alloy::providers::{Provider, ProviderBuilder};
-use eyre::{Context, Result};
-use alloy::sol;
+use eyre::{Result};
 use alloy::primitives::Address;
 
-sol! {
-    #[sol(rpc)]
-    contract HelloWeb3 {
-        function hello_web3() pure public returns(string memory);
-    }
-}
+mod task1_hello_web3;
+mod task2_balance_query;
 
 #[tokio::main]  // asynchronous main function
 async fn main() -> Result<()> {
-    // 1. public rpc address of Arbitrum Sepolia
-    let rpc_url = "https://arbitrum-sepolia-rpc.publicnode.com".parse().wrap_err("parse RPC url failed.")?;
+    // task1: hello web3
+    println!("-------- Task 1 --------");
+    task1_hello_web3::hello::hello_web3().await?;
 
-    // 2. create a provider
-    let provider = ProviderBuilder::new().connect_http(rpc_url);
+    // task2: balance query
+    println!("-------- Task 2 --------");
+    let my_addr: Address = "0x724F1E6C5cdc958eB6D305090c6cAfa79F11A39b".parse()?;
+    match task2_balance_query::balance::get_eth_balance(my_addr).await {
+        Ok(balance) => println!("The balance of address {} is: {} ETH", my_addr, balance),
+        Err(e) => eprintln!("Error: {}", e),
+    }
 
-    // 3. interaction: get the latest block number
-    let latest_block_number = provider.get_block_number().await.wrap_err("failed to connect to Arbitrum Sepolia.")?;
-
-    println!("Hello Web3!");
-    println!("Connected to Arbitrum Sepolia Testnet!");
-    println!("The latest block number is: {}", latest_block_number);
-
-    // 4. invoke the contract
-    let contract_addr: Address = "0x3f1f78ED98Cd180794f1346F5bD379D5Ec47DE90".parse().wrap_err("failed to parse contract address.")?;
-    let contract = HelloWeb3::new(contract_addr, provider);
-    let result = contract.hello_web3().call().await.wrap_err("failed to invoke contract.")?;
-
-    println!("Invoked contract HelloWeb3, the result is: {}", result);
-
+    println!("-------- End --------");
     Ok(())
 }
