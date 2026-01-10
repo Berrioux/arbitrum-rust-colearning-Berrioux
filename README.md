@@ -1,0 +1,25 @@
+This is homeworks of Arbitrum x HackQuest Rust colearning.
+
+## MetaMask configuration
+
+1. Add MetaMask extention to the brower
+
+<img src="./img/1-metamask.png">
+
+2. Switch to Aribitrum Sepolia Testnet
+
+<img src="./img/2-switch-to-arb-sepolia.png">
+
+3. Get test coin from faucet
+
+<img src="./img/3-faucet.png">
+
+4. Ready for the journey!
+
+<img src="./img/4-got-test-coin.png">
+
+## Task-1: Hello Web3
+
+In `src/main.rs`, we connect to Aribitrum Sepolia Testnet, get the latest block number, and invoke the smart contract HelloWeb3. By running `cargo run`, we have the output:
+
+<img src="./img/task1-output.png">
