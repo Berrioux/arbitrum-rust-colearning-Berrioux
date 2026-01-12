@@ -29,3 +29,9 @@ In `src/task1_hello_web3/hello.rs`, we connect to Aribitrum Sepolia Testnet, get
 In `src/task2_balance_query/balance.rs`, we connect to Aribitrum Sepolia Testnet, query the balance of the address, convert it from Wei to ETH and finally return. The running result is:
 
 <img src="./img/task2-output.png">
+
+## Task3: Gas Price
+
+In `src/task3_gas_price/price.rs`, we get the latest gas price, estimate the fee of a transfer, and present the result in Gwei and ETH.
+
+<img src="./img/task3-output.png">

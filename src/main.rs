@@ -3,6 +3,7 @@ use alloy::primitives::Address;
 
 mod task1_hello_web3;
 mod task2_balance_query;
+mod task3_gas_price;
 
 #[tokio::main]  // asynchronous main function
 async fn main() -> Result<()> {
@@ -17,6 +18,10 @@ async fn main() -> Result<()> {
         Ok(balance) => println!("The balance of address {} is: {} ETH", my_addr, balance),
         Err(e) => eprintln!("Error: {}", e),
     }
+
+    // task3: gas price
+    println!("-------- Task 3 --------");
+    task3_gas_price::price::gas_price().await?;
 
     println!("-------- End --------");
     Ok(())
