@@ -35,3 +35,11 @@ In `src/task2_balance_query/balance.rs`, we connect to Aribitrum Sepolia Testnet
 In `src/task3_gas_price/price.rs`, we get the latest gas price, estimate the fee of a transfer, and present the result in Gwei and ETH.
 
 <img src="./img/task3-output.png">
+
+## Task4: Transfer
+
+In `src/task4_transfer/transfer.rs`, we transfer `amount_eth` ETH to address `to_address_str`.
+
+<img src="./img/task4-output.png">
+
+Note that we manually set set price and gas limit. To make sure the transaction will be accepted, we add a +50% buffer on gas price and +20% buffer on gas limit. In practice, the automatic configuration is already enough.
