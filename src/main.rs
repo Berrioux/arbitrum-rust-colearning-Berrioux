@@ -6,6 +6,7 @@ mod task1_hello_web3;
 mod task2_balance_query;
 mod task3_gas_price;
 mod task4_transfer;
+mod task5_contract;
 
 #[tokio::main]  // asynchronous main function
 async fn main() -> Result<()> {
@@ -34,6 +35,10 @@ async fn main() -> Result<()> {
     let to_addr_str = env::var("TARGET_ADDRESS").wrap_err("TARGET_ADDRESS not set in .env file")?;
     let amount = "0.001"; // in ETH
     task4_transfer::transfer::transfer(&to_addr_str, amount).await?;
+
+    // task5: interact with contract
+    println!("-------- Task 5 --------");
+    task5_contract::contract::interact_with_weth().await?;
 
     println!("-------- End --------");
     Ok(())
